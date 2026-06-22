@@ -1,0 +1,10 @@
+node_modules
+out
+web-dist
+release
+dist
+.DS_Store
+*.log
+.env
+.env.local
+!package-lock.json

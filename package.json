@@ -1,0 +1,73 @@
+{
+  "name": "cms-psd",
+  "version": "0.1.0",
+  "description": "React web tool for converting PSD activity designs into activityincms import packages.",
+  "type": "module",
+  "main": "out/main/index.js",
+  "scripts": {
+    "dev": "npm run sync:skill && electron-vite dev",
+    "dev:server": "tsx watch server/index.ts",
+    "dev:web": "vite --host 127.0.0.1",
+    "build": "npm run sync:skill && electron-vite build",
+    "build:server": "tsc -p server/tsconfig.json",
+    "build:web": "vite build",
+    "preview:web": "vite preview --host 127.0.0.1",
+    "check": "tsc --noEmit && npm run check:server && npm run check:cf-functions && electron-vite build",
+    "check:cf-functions": "tsc --noEmit --target ES2022 --lib ES2022,DOM --module NodeNext --moduleResolution NodeNext --skipLibCheck functions/api/compress.ts functions/api/health.ts",
+    "check:server": "tsc -p server/tsconfig.json --noEmit",
+    "sync:skill": "node scripts/sync-skill.mjs",
+    "package:mac": "npm run build && electron-packager . \"PSD转CMS导入包\" --platform=darwin --arch=arm64 --out=release --overwrite --asar --prune=true --extra-resource=vendor/activity-cms-psd-node --ignore=\"^/(src|vendor|release|out)($|/)\"",
+    "pack:mac": "npm run package:mac",
+    "builder:mac": "npm run build && electron-builder --mac dir"
+  },
+  "dependencies": {
+    "@electron-toolkit/preload": "^3.0.2",
+    "@electron-toolkit/utils": "^3.0.0",
+    "@fastify/cors": "^11.2.0",
+    "@fastify/multipart": "^10.0.0",
+    "ag-psd": "^28.5.1",
+    "dotenv": "^17.4.2",
+    "fastify": "^5.8.5",
+    "jszip": "^3.10.1",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.0.1",
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^31.7.7",
+    "electron-builder": "^26.15.3",
+    "electron-vite": "^3.0.0",
+    "tsx": "^4.22.4",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3"
+  },
+  "build": {
+    "appId": "com.activitycms.cmspsd",
+    "productName": "PSD转CMS导入包",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "vendor/activity-cms-psd-node",
+        "to": "activity-cms-psd-node"
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "activity-cms-psd-node",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "activity-cms-psd-node": "./activity-cms-psd-node"
+  },
+  "scripts": {
+    "start": "node scripts/create_package.mjs",
+    "check": "node --check scripts/create_package.mjs"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.80",
+    "ag-psd": "^28.0.0",
+    "tinify": "^1.8.0"
+  }
+}

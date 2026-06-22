@@ -1,0 +1,3 @@
+display_name: Activity CMS PSD Node
+short_description: Node PSD to activityincms JSON drafts.
+default_prompt: Convert this activity PSD into an activityincms import package using the Node.js PSD pipeline, choose or confirm an output directory, then produce assets, cms-page-config.json, theme.json, and theme.md.
