@@ -257,7 +257,7 @@ export default function App(): JSX.Element {
       <section className="hero">
         <div>
           <p className="eyebrow">{electronMode ? 'activity-cms-psd-node' : 'browser activity-cms-psd'}</p>
-          <h1>PSD 转 CMS 导入包</h1>
+          <h1>psd切图工具</h1>
         </div>
         <div className={statusClass}>{statusLabel}</div>
       </section>
@@ -360,7 +360,15 @@ export default function App(): JSX.Element {
               清空
             </button>
           </div>
-          <pre ref={logRef}>{log}</pre>
+          <div className="log-box">
+            <pre ref={logRef}>{log}</pre>
+            {state.running ? (
+              <div className="log-loading" aria-live="polite">
+                <span className="log-spinner" />
+                <span>正在处理，请稍候</span>
+              </div>
+            ) : null}
+          </div>
         </div>
       </section>
     </main>

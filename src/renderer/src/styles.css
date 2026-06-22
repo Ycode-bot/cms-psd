@@ -354,19 +354,53 @@ button:disabled {
   font-weight: 800;
 }
 
+.log-box {
+  overflow: hidden;
+  border: 1px solid #222;
+  border-radius: 8px;
+  background: #161a1c;
+}
+
 pre {
   height: 320px;
   margin: 0;
   padding: 14px;
   overflow: auto;
-  border: 1px solid #222;
-  border-radius: 8px;
-  background: #161a1c;
+  border: 0;
+  background: transparent;
   color: #e7eadf;
   font-family: "SF Mono", Menlo, Consolas, monospace;
   font-size: 12px;
   line-height: 1.55;
   white-space: pre-wrap;
+}
+
+.log-loading {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 14px;
+  border-top: 1px solid rgba(231, 234, 223, 0.12);
+  color: #d7ddcf;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.log-spinner {
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(215, 221, 207, 0.24);
+  border-top-color: var(--accent);
+  border-radius: 999px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 920px) {
